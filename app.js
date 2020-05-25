@@ -6,3 +6,4 @@ function incrementSeconds() {
 }
 
  const interval = setInterval(incrementSeconds, 1000);
+ 
