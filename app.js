@@ -1,8 +1,11 @@
+const clock = document.getElementById('clock')
+const startButton = document.getElementById('startButton')
+
 let seconds = 0
 
-function incrementSeconds() {
+startButton.addEventListener("click", function() {
+    setInterval(function () {
     seconds++;
-    document.getElementById('clock').innerHTML = seconds;
-}
-
- const interval = setInterval(incrementSeconds, 1000);
+    clock.textContent = seconds;
+    }, 1000);
+});
