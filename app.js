@@ -21,3 +21,8 @@ stopButton.addEventListener("click", () => {
         clearInterval(intervalID);
         isRunning = false;
 });
+
+resetButton.addEventListener("click", () => {
+    clock.textContent = 0;
+    seconds = 0;
+});
