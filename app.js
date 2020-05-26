@@ -19,4 +19,5 @@ startButton.addEventListener("click", () => {
 
 stopButton.addEventListener("click", () => {
         clearInterval(intervalID);
+        isRunning = false;
 });
