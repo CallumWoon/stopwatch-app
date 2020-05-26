@@ -5,11 +5,11 @@ let seconds = 0
 
 let isRunning = false;
 
-startButton.addEventListener("click", function() {
+startButton.addEventListener("click", () => {
     if (isRunning === false) {
-    setInterval(function () {
-    seconds++;
-    clock.textContent = seconds;
+        setInterval(() => {
+        seconds++;
+        clock.textContent = seconds;
     }, 1000);
     isRunning = true;
     }
