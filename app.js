@@ -1,7 +1,7 @@
 let seconds = 0
 
 function incrementSeconds() {
-    seconds += 1;
+    seconds++;
     document.getElementById('clock').innerHTML = seconds;
 }
 
