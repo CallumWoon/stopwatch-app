@@ -1,5 +1,4 @@
 let isRunning = false;
-let isStopped = true;
 let intervalClock;
 let secondsClock = 0;
 let intervalLap;
@@ -18,19 +17,20 @@ function addRow(tableID, lapTime) {
   }
   
 startButton.addEventListener("click", () => {
+    if (secondsClock === 0) {
+        addRow('lapTable', secondsLap);
+    }
     if (isRunning === false) {
         intervalClock = setInterval(() => {
             secondsClock++;
             mainClock.textContent = secondsClock;
         }, 1000);
 
-        addRow('lapTable', secondsLap);
         intervalLap = setInterval(() => {
             secondsLap++;
             document.getElementById("lapTable").rows[0].cells[1].textContent = secondsLap;
         }, 1000);
-        isRunning = true;
-        isStopped = false;        
+        isRunning = true;     
     }
 });
 
@@ -38,11 +38,10 @@ stopButton.addEventListener("click", () => {
     clearInterval(intervalClock);
     clearInterval(intervalLap);
     isRunning = false;
-    isStopped = true;
 });
 
 resetButton.addEventListener("click", () => {
-    if (isStopped === true) {
+    if (isRunning === false) {
     mainClock.textContent = 0;
     secondsClock = 0;
     secondsLap = 0;
@@ -54,5 +53,5 @@ resetButton.addEventListener("click", () => {
 lapButton.addEventListener('click', () => {
     lapNumber++;
     addRow('lapTable', secondsLap);
-    secondsLap = -1;
+    secondsLap = 0;
 });
