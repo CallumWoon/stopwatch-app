@@ -5,14 +5,20 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h2 id="clock">0</h2>
-        <button id="startButton">Start</button>
-        <button id="stopButton">Stop</button>
-        <button id="resetButton">Reset</button>
-        <button id="lapButton">Lap</button>
+        <div>
+            <h2 id="mainClock">0</h2>
+        </div>
+        <div>
+            <button id="startButton">Start</button>
+            <button id="stopButton">Stop</button>
+            <button id="resetButton">Reset</button>
+            <button id="lapButton">Lap</button>
+        </div>
 
-        <div id="listDiv">
-            <ul id=lapsUl></ul>
+        <div>
+            <table id="lapTable">
+                <th></th>
+            </table>
         </div>
 
         <script src="app.js"></script>
