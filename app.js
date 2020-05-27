@@ -1,40 +1,10 @@
-// const mainClock = document.getElementById('mainClock')
-// const startButton = document.getElementById('startButton')
-// const stopButton = document.getElementById('stopButton')
-// const resetButton = document.getElementById('resetButton')
-// const lapButton = document.getElementById('lapButton')
-
-let seconds = 0
-
 let isRunning = false;
-let intervalID;
-
-
-startButton.addEventListener("click", () => {
-    if (isRunning === false) {
-        intervalID = setInterval(() => {
-            seconds++;
-            mainClock.textContent = seconds;
-        }, 1000);
-        addRow('lapTable', 'here');
-        isRunning = true;
-    }
-});
-
-stopButton.addEventListener("click", () => {
-    clearInterval(intervalID);
-    isRunning = false;
-});
-
-
-resetButton.addEventListener("click", () => {
-    mainClock.textContent = 0;
-    seconds = 0;
-    lapNumber = 0;
-    lapTable.textContent = '';
-});
-
-let lapNumber = 0;
+let isStopped = true;
+let intervalClock;
+let secondsClock = 0;
+let intervalLap;
+let secondsLap = 0;
+let lapNumber = 1;
 
 function addRow(tableID, lapTime) {
     let tableRef = document.getElementById(tableID);
@@ -46,12 +16,43 @@ function addRow(tableID, lapTime) {
     newFirstCell.appendChild(newFirstText);
     newSecondCell.appendChild(newSecondText);
   }
+  
+startButton.addEventListener("click", () => {
+    if (isRunning === false) {
+        intervalClock = setInterval(() => {
+            secondsClock++;
+            mainClock.textContent = secondsClock;
+        }, 1000);
+
+        addRow('lapTable', secondsLap);
+        intervalLap = setInterval(() => {
+            secondsLap++;
+            document.getElementById("lapTable").rows[0].cells[1].textContent = secondsLap;
+        }, 1000);
+        isRunning = true;
+        isStopped = false;        
+    }
+});
+
+stopButton.addEventListener("click", () => {
+    clearInterval(intervalClock);
+    clearInterval(intervalLap);
+    isRunning = false;
+    isStopped = true;
+});
+
+resetButton.addEventListener("click", () => {
+    if (isStopped === true) {
+    mainClock.textContent = 0;
+    secondsClock = 0;
+    secondsLap = 0;
+    lapNumber = 1;
+    lapTable.textContent = '';
+    }
+});
 
 lapButton.addEventListener('click', () => {
-    if (lapNumber != 0) {
-        addRow('lapTable', '');
-    } else {
-        addRow('lapTable', seconds);
-    }
     lapNumber++;
+    addRow('lapTable', secondsLap);
+    secondsLap = -1;
 });
